@@ -1,71 +1,66 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Dimensions} from 'react-native'
+import { View, Text, StyleSheet} from 'react-native'
+import InputNumberButton from './InputNumberButton'
+
+const buttons = [
+  ['CLEAR', 'DEL'],
+  [7, 8 ,9, '/'],
+  [4, 5, 6, "x"],
+  [1, 2, 3, "-"],
+  [0, ".", "=", "+"]
+];
 
 export default class Calculator extends Component {
 
-  state = {
-    number: 0,
-    previousNumber: 0,
-  }
+  renderButtons() {
+    let layouts = buttons.map((buttonRows, index) => {
+      let rowItem = buttonRows.map((buttonItems, buttonIndex) => {
+        return <InputNumberButton
+          value={buttonItems}
+          key={'btn-' + buttonIndex} />
+      });
+      return <View style={styles.inputRow} key={'row-' + index}> {rowItem} </View>
+    });
 
-  numbersList = () => {
-    return [...Array(9).keys()].map((number) => {
-      return (
-        <View key={number} style={styles.button}>
-          <Text style={styles.buttonText}>{number}</Text>
-        </View>
-        )
-    })
+    return layouts
   }
 
   render() {
     return (
-      <View>
-        <View style={styles.input}>
-          <TextInput />
+      <View style={styles.container}>
+        <View style={styles.resultContainer}>
+          <Text style={styles.resultText}>0</Text>
         </View>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>+</Text>
+        <View style={styles.inputContainer}>
+          {this.renderButtons()}
         </View>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>-</Text>
-        </View>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>*</Text>
-        </View>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>/</Text>
-        </View>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>=</Text>
-        </View>
-        {this.numbersList()}
       </View>
       )
   }
 }
 
-const width = Dimensions.get('window').width
-
 const styles = StyleSheet.create({
-  button: {
-    padding: 10,
-    borderColor: "black",
-    borderWidth: 2,
-    height: 70,
-    width: 70,
+  container: {
+    flex: 1,
   },
-  buttonText: {
-    fontSize: 50,
-        textAlign: "center",
+  resultContainer: {
+    flex: 2,
+    justifyContent: 'center',
+    backgroundColor: '#1E1240',
   },
-  input: {
+  inputContainer: {
+    flex: 8,
+    backgroundColor: '#3D0075',
+  },
+  resultText: {
+    color: 'white',
+    fontSize: 80,
+    fontWeight: 'bold',
     padding: 20,
-    fontSize: 20,
-    borderColor: "black",
-    borderWidth: 2,
-    justifyContent: "center",
-    alignSelf: 'stretch',
-    width: width
+    textAlign: 'right',
+  },
+  inputRow: {
+    flex: 1,
+    flexDirection: 'row',
   }
 })

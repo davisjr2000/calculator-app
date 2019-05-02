@@ -4704,7 +4704,12 @@ react-native-gesture-handler@~1.0.14:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
-"react-native-maps@github:expo/react-native-maps#v0.22.1-exp.0":
+react-native-gridstrap@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-gridstrap/-/react-native-gridstrap-1.1.0.tgz#1e3262c7c21f15cf33155175fd0c814ac905dcf5"
+  integrity sha512-+EdtnYZf7o6j+R8ehNJJlh0c5VhrG7FoTx/BGOAxv3Xe23CtYFd1SVgFvxLP2FS2F4TLVk1XnwUL++5PObuBBw==
+
+react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"
 
